@@ -19,3 +19,16 @@ function solution(input) {
 
     return answer.join('\n');
 }
+
+/*
+function getPrefixSum(matrix) {
+    const prefixSum = [];
+    [0, ...matrix].reduce((acc, curr) => {
+        const sum = acc + curr;
+        prefixSum.push(sum);
+        return sum;
+    }, 0);
+    console.log(prefixSum);
+    return prefixSum;
+}
+*/
