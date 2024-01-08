@@ -16,3 +16,4 @@ while True:
     s += nums[rp]
     
 print(0) if ans == 100001 else print(ans)
+
