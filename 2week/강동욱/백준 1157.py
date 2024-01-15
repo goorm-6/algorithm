@@ -10,3 +10,8 @@ if cnt.count(max(cnt)) >= 2:
     print('?')
 else:
     print(word_list[(cnt.index(max(cnt)))].upper())
+
+# abbccc
+# word_list = a,b,c
+# cnt = [1,2,3]
+# 
