@@ -1,2 +1,0 @@
-# codingTest
-코테
