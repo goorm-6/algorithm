@@ -1,18 +1,10 @@
-const input = `14 5
+const input = `6 7
 1
-3
-4
-2
-2
-4
-3
-4
+5
 3
 3
-3
-2
-3
-3`.trim().split('\n');
+5
+1`.trim().split('\n');
 console.log(solution(input));
 
 function solution(input) {
