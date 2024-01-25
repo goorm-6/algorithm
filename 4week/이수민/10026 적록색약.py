@@ -33,7 +33,7 @@ g1 = copy.deepcopy(g) # 기존 배열의 값이 변경되지 않게 하기위해
 
 # 색약이 아닌 경우의 수
 for i in range(n):
-    for j in range(1,n):
+    for j in range(n):
         if g[i][j] != 0:
             cal(i,j)
             p1 += 1 
@@ -42,13 +42,13 @@ g = g1
 
 # 색약일 경우 빨강과 초록을 같은 색으로 보기때문에 빨간색으로 변경
 for i in range(n):
-    for j in range(1, n):
+    for j in range(n):
         if g[i][j] == "G":
             g[i][j] = "R"
 
 # 색약이 있는경우의 수
 for i in range(n):
-    for j in range(1,n):
+    for j in range(n):
         if g[i][j] != 0:
             cal(i,j)
             p2 += 1 
