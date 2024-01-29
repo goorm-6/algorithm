@@ -9,9 +9,8 @@ for (let i = 0; i < input.length; i++) {
         const partialSum = input[i] + input[j];
 
         if (sum - partialSum === 100) {
-            result = input.filter(x => x !== input[i] && x !== input[j]).sort((a, b) => a - b);
+            result = input.filter(x => x !== input[i] && x !== input[j]).sort((a, b) => a - b); //오름차순 정렬
             break;
         }
     }
 }
-console.log(result.join('\n'));
