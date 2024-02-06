@@ -1,60 +1,31 @@
-#14502_연구소_bfs_gold5
-
+from sys import stdin
 from collections import deque
-import copy
-import sys
-input = sys.stdin.readline
+from copy import deepcopy
+from itertools import combinations
 
-d = [[-1,0],[1,0],[0,-1],[0,1]]
-
-def bfs():
-    queue = deque()
-    #queue에 2의 위치 전부 append
-    test_map = copy.deepcopy(lab_map)
-    for i in range(n):
-        for k in range(m):
-            if test_map[i][k] == 2:
-                queue.append((i,k))
-
-    while queue:
-        r,c = queue.popleft()
-
-        for i in range(4):
-            dr = r+d[i][0]
-            dc = c+d[i][1]
-
-            if (0<=dr<n) and (0<=dc<m):
-                if test_map[dr][dc] == 0:
-                    test_map[dr][dc] =2
-                    queue.append((dr,dc))
-    global result
-    count = 0
-    for i in range(n):
-        for k in range(m):
-            if test_map[i][k] == 0:
-                count +=1
-
-    result = max(result, count)
+def bfs(graph):
+    q = deque([(j, i) for i in range(N) for j in range(M) if graph[i][j] == 2])
+    while q:
+        x, y = q.popleft()
+        for nx, ny in zip([x+1, x-1, x, x], [y, y, y+1, y-1]):
+            if 0 <= nx < M and 0 <= ny < N and not graph[ny][nx]:
+                graph[ny][nx] = 2
+                q.append((nx, ny))
+    
+    global answer
+    count = sum([i.count(0) for i in graph])
+    answer = max(answer, count)
 
 
-def make_wall(count):
-    if count == 3:
-        bfs()
-        return
-    for i in range(n):
-        for k in range(m):
-            if lab_map[i][k] == 0:
-                lab_map[i][k] = 1
-                make_wall(count+1)
-                lab_map[i][k] = 0
+N, M = map(int, stdin.readline().split())
+graph = [list(map(int, stdin.readline().split())) for _ in range(N)]
+x_y = [(x, y) for x in range(M) for y in range(N) if not graph[y][x]]
+answer = 0
 
+for c in combinations(x_y, 3):
+    tmp_graph = deepcopy(graph)
+    for x, y in c:
+        tmp_graph[y][x] = 1
+    bfs(tmp_graph)
 
-
-n, m = map(int,input().split())
-lab_map = [list(map(int,input().split())) for _ in range(n)]
-
-
-# result = 0
-# make_wall(0)
-
-# print(result)
+print(answer)
